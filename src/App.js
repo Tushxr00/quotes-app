@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./Pages/AllQuotes";
 import NewQuote from "./Pages/NewQuote";
+import NotFound from "./Pages/NotFound";
 import QuoteDetals from "./Pages/QuoteDetail";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/quotes" element={<AllQuotes />} />
         <Route path="/quotes/:quoteId/*" element={<QuoteDetals />} />
         <Route path="/new-quote" element={<NewQuote />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );
