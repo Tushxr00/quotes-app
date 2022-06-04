@@ -1,4 +1,6 @@
+import dummyQuotes from "../components/data/dummyQuotes";
+import QuoteList from "../components/quotes/QuoteList";
 const AllQuotes = () => {
-  return <h1>All Quotes</h1>;
+  return <QuoteList quotes={dummyQuotes} />;
 };
 export default AllQuotes;
