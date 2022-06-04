@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Route, Routes, useParams } from "react-router-dom";
+import Comments from "../components/comments/Comments";
 
 const QipteDetails = () => {
   const params = useParams();
@@ -9,14 +10,7 @@ const QipteDetails = () => {
       <h1>Qipte Details</h1>
       <p>{params.quoteId}</p>
       <Routes>
-        <Route
-          path="comments"
-          element={
-            <Fragment>
-              <p> See The comments</p>
-            </Fragment>
-          }
-        />
+        <Route path="comments" element={<Comments />} />
       </Routes>
     </Fragment>
   );
