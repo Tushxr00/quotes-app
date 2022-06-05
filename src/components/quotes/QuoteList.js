@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
@@ -25,7 +26,13 @@ const QuoteList = (props) => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    navigation(`/quotes?sort=${isSortingAscending ? "desc" : "asc"}`);
+    navigation({
+      pathname: location.pathname,
+      search: `sort=${isSortingAscending ? "desc" : "asc"}`,
+    });
+    // navigation(
+    //   `${location.pathname}?sort=${isSortingAscending ? "desc" : "asc"}`
+    // );
   };
 
   return (
