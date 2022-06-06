@@ -38,13 +38,11 @@ const Comments = () => {
   if (status === "completed" && (loadedComments && loadedComments.length > 0)) {
     comments = (<CommentsList comments={loadedComments} />)
   }
-  console.log(!loadedComments)
-  console.log(loadedComments?.length === 0)
+  
   if (status === "completed" && (!loadedComments || loadedComments.length === 0)) {
     comments = <p className='centered'> No Comments were added yet!</p>
   }
 
-console.log(comments)
   return (
     <section className={classes.comments}>
       <h2>User Comments</h2>
