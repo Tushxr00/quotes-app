@@ -1,10 +1,11 @@
 import React, { Suspense, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import dummyQuotes from "./components/data/dummyQuotes";
 import Layout from "./components/layout/Layout";
-import { addQuote } from "./lib/api";
-import useHttp from "./hooks/use-http";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+// import dummyQuotes from "./components/data/dummyQuotes";
+// import { addQuote } from "./lib/api";
+// import useHttp from "./hooks/use-http";
+
 /**
  * normal import statement
  */
