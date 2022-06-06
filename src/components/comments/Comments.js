@@ -56,7 +56,7 @@ console.log(comments)
       {isAddingComment &&
         <NewCommentForm
           quoteId={quoteId}
-          onAddedComment={addedCommentHandler}
+          onAddedCommet={addedCommentHandler}
         />}
       {comments}
     </section>
