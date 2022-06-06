@@ -1,14 +1,50 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useHttp from '../../hooks/use-http';
+import { getAllComments } from '../../lib/api';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './Comments.module.css';
+import CommentsList from './CommentsList';
 import NewCommentForm from './NewCommentForm';
+
 const Comments = () => {
   const [isAddingComment, setIsAddingComment] = useState(false);
+  const params = useParams()
+  const { sendRequest, status, data: loadedComments } = useHttp(getAllComments)
+  const { quoteId } = params
+
+  useEffect(() => {
+    sendRequest(quoteId)
+  }, [quoteId, sendRequest]);
 
   const startAddCommentHandler = () => {
     setIsAddingComment(true);
   };
 
+  const addedCommentHandler = () => {
+
+  }
+
+  let comments ;
+  
+  if (status === "pending") {
+    comments = (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    )
+  }
+
+  if (status === "completed" && (loadedComments && loadedComments.length > 0)) {
+    comments = (<CommentsList comments={loadedComments} />)
+  }
+  console.log(!loadedComments)
+  console.log(loadedComments?.length === 0)
+  if (status === "completed" && (!loadedComments || loadedComments.length === 0)) {
+    comments = <p className='centered'> No Comments were added yet!</p>
+  }
+
+console.log(comments)
   return (
     <section className={classes.comments}>
       <h2>User Comments</h2>
@@ -17,8 +53,12 @@ const Comments = () => {
           Add a Comment
         </button>
       )}
-      {isAddingComment && <NewCommentForm />}
-      <p>Comments...</p>
+      {isAddingComment &&
+        <NewCommentForm
+          quoteId={quoteId}
+          onAddedComment={addedCommentHandler}
+        />}
+      {comments}
     </section>
   );
 };
